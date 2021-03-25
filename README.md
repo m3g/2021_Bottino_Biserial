@@ -21,7 +21,7 @@ In order to follow this tutorial, you will need to set up some software:
 
    - _All the softare above, plus_
    - **A capable compilation of the Rosetta modeling software suite**
-     - Rosetta comes in many versions and installation/compilation and configuration may require some information about your computing system. Ask your system administrator for help and/or refer to https://www.rosettacommons.org/demos/latest/tutorials/install_build/install_build to get further instructions. In this work, we employed Rosetta version X.XX.XXXXXX
+      - Rosetta comes in many versions and installation/compilation and configuration may require some information about your computing system. Ask your system administrator for help and/or refer to https://www.rosettacommons.org/demos/latest/tutorials/install_build/install_build to get further instructions. In this work, we employed Rosetta version X.XX.XXXXXX
 
 ___
 ## Example Target: PDB 1C75
@@ -56,7 +56,19 @@ PDB_1C75_A                                      Parent folder
 
 ### Tutorial
 
-1. Clone this repository
-2. Extract the `.tar.gz` files in their respective folders. Move or delete the original file afterwards.
+#### Part 1: To generate and analyze the preliminary modeling data yourself (skip this if you intend to make constraint selection on the sample data)
 
-_TODO_
+1. Clone this repository
+2. Customize files `MODELING/rosetta_flags.txt` and `MODELING/modeling_round.pbs` according to your system (ask sysadmin for help if needed).
+   * Please note that `MODELING/modeling_round.pbs` will output 10 models by default - alter this amount to 710 to reproduce the 10*L models actually generated in the article.
+3. Submit `MODELING/modeling_round.pbs` to your cluster queue.
+4. Use the models generated to folow tutorial 2.
+
+#### Part 2: To make a constraint selection using the sample preliminary data provided in this repository
+
+1. Clone this repository (if not already cloned)
+2. Extract the `.tar.gz` files in their respective folders. Move or delete the original file afterwards.
+3. Run the `constraintSelector.jl` script using `$> julia constraintSelector.jl`. Two files will be generated: 
+   * `bisList.dat` will contain the complete list of point-biserial correlations for all residue pairs (when applicable), and
+   * `selected_constraints.cst` will contain the L top contacts of the previous list already formatted to Rosetta's AtomPair format for input on the next modeling rounds.
+4. Edit `MODELING/modeling_round.pbs` to point to the new constraint file. Repeat modeling rounds.
