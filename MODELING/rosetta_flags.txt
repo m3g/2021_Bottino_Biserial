@@ -1,0 +1,28 @@
+#2021_Bottino_Biserial_Rosetta_Flags
+
+-abinitio
+ -fastrelax
+ -increase_cycles 5
+ -rg_reweight 0.25
+
+-in
+ -file
+  -fasta INPUT_FILES/1c75.fasta
+  -frag3 INPUT_FILES/aat000_03_05.200_v1_3
+  -frag9 INPUT_FILES/aat000_09_05.200_v1_3
+
+ -path
+  -database $ROSETTA_DATABASE_PATH #Insert path to your rosetta database
+
+-out
+ -nstruct 1000
+
+ -file
+  -fullatom
+  -silent folding_silent.out
+
+-constraints
+  -cst_file $CONSTRAINT_FILE_PATH #Insert path to your constraint file. For the DCA constraints, point to ../PREDICTION/1C75_A_DCA_constraints.cst 
+  -cst_weight 1
+  -cst_fa_file $CONSTRAINT_FILE_PATH #Insert path to your constraint file. For the DCA constraints, point to ../PREDICTION/1C75_A_DCA_constraints.cst 
+  -cst_fa_weight 1

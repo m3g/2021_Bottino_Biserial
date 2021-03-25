@@ -33,26 +33,30 @@ In this repository, we provide detailed instructions for reproduction of all res
 We provide the following files: _TODO_
 
 ```
-PDB_1C75_A                          Parent folder
-|--- FIXED_INPUT                    Folder containing the INPUT files for modeling
-     |--- 1C75_A.fasta              Protein sequence in FASTA format
-     |--- 1C75_A.pdb                Protein structure in PDB format
-     |--- aa1C75A03_05.200_v1_3     Rosetta Frag3 file (legacy format, obtained from old.robetta.org)
-     |--- aa1C75A09_05.200_v1_3     Rosetta Frag9 file (legacy format, obtained from old.robetta.org)
-|--- PREDICTION
-     |--- 1C75_A_DCA_RESULTS.dat    File with DI estimates between residues
-     |--- DCA_constraints.cst       Constraint file in the Rosetta Format
-|--- MODELING
-     |--- options                   option flags (parameters) for the AbinitioRelax protocol
-     |--- aa1C75A09_05.200_v1_3     generic modeling script (to be adapted according to infrastructure)
-|--- 1C75_A_PRE00
-     |--- pdb                       PDB files obtained from the preliminary round
-     |--- 1C75_A.pdb                Protein structure in PDB format
-     |--- aa1C75A03_05.200_v1_3     Rosetta Frag3 file (legacy format, obtained from old.robetta.org)
-     |--- aa1C75A09_05.200_v1_3     Rosetta Frag9 file (legacy format, obtained from old.robetta.org)
-|--- constraintSelector.jl          Script responsible for constraint selection
+PDB_1C75_A                                      Parent folder
+|--- FIXED_INPUT                                Folder containing the INPUT files for modeling
+     |--- 1C75_A.fasta                          Protein sequence in FASTA format
+     |--- 1C75_A.pdb                            Protein structure in PDB format
+     |--- aa1C75A03_05.200_v1_3                 Rosetta Frag3 file (legacy format, obtained from old.robetta.org)
+     |--- aa1C75A09_05.200_v1_3                 Rosetta Frag9 file (legacy format, obtained from old.robetta.org)
+|--- PREDICTION                                 Folder containing files relevant to the preliminary DCA
+     |--- 1C75_A_DCA_RESULTS.dat                File with DI estimates between residues using GaussDCA.jl
+     |--- 1C75_A_DCA_constraints.cst            Constraint file in the Rosetta Format
+     |--- 1C75_A_MSA_NOGAP.msa                  MSA of target protein aligned to its family and trimmed to target length (input to DCA)
+|--- MODELING                                   Folder containing the actual modeling scripts
+     |--- rosetta_flags.txt                     Parameter flags for the Rosetta AbinitioRelax protocol
+     |--- modeling_round.pbs                    Generic PBS modeling round script (to be adapted according to infrastructure)
+|--- 1C75_A_PRE00                               Folder containing the results of the preliminary round for target 1C75_A_PRE00
+     |--- 1C75_A_PRE00_PDBfiles.tar.gz     Tar file containing the PDB files generated
+     |--- 1C75_A_PRE00_alignlogs.tar.gz    Tar file containing the alignment logs for all-on-all alignment
+     |--- aa1C75A03_05.200_v1_3                 Rosetta Frag3 file (legacy format, obtained from old.robetta.org)
+     |--- aa1C75A09_05.200_v1_3                 Rosetta Frag9 file (legacy format, obtained from old.robetta.org)
+|--- constraintSelector.jl                      Script responsible for constraint selection
 ```
 
 ### Tutorial
+
+1. Clone this repository
+2. Extract the `.tar.gz` files in their respective folders. Move or delete the original file afterwards.
 
 _TODO_
